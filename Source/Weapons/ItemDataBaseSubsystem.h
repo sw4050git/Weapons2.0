@@ -75,7 +75,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "WeaponDataBase")
 	void GetEquippedWeaponData(int32 EquippedWeaponIndex, class UCPP_WeaponDataAsset*& WeaponData) const;
 
-
 	UFUNCTION(BlueprintCallable, Category = "WeaponDataBase")
 	void SetEquippedWeaponData(int32 EquippedWeaponIndex, UCPP_WeaponDataAsset* WeaponData);
 
