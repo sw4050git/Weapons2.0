@@ -16,6 +16,9 @@ UItemDataBaseSubsystem::UItemDataBaseSubsystem() {
 void UItemDataBaseSubsystem::AddItem(FST_ItemData NewItem) {
 	if (Items.Contains(NewItem.ItemData)) {
 		Items[NewItem.ItemData] += NewItem.Count;
+		if (Items[NewItem.ItemData] > NewItem.ItemData->MaxCount) {
+			Items[NewItem.ItemData] = NewItem.ItemData->MaxCount;
+		}
 	}
 	else {
 		Items.Add(NewItem.ItemData, NewItem.Count);
