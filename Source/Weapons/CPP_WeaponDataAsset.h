@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "CPP_ItemDataAssetBase.h"
 #include "CPP_WeaponBase.h"
+#include "Element.h"
 #include "Abilities/GameplayAbility.h"
 #include "CPP_WeaponDataAsset.generated.h"
 
@@ -24,7 +25,25 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TArray<TSubclassOf<UGameplayAbility>> ComboAbilitys;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Attack")
 	float Attack;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Attack")
+	float Attack_Flame;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere,Category = "Attack")
+	float Attack_Water;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Attack")
+	float Attack_Ice;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Attack")
+	float Attack_Wind;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Attack")
+	float Attack_Thunder;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Attack")
+	float Attack_Mud;
 	
 };

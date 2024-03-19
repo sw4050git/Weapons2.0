@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameplayModMagnitudeCalculation.h"
+#include "Element.h"
 #include "GMMC_Attack.generated.h"
 
 /**
@@ -18,13 +19,18 @@ public:
 	UGMMC_Attack();
 
 	UPROPERTY()
-	FGameplayEffectAttributeCaptureDefinition AttackBaseDef;
+	FGameplayEffectAttributeCaptureDefinition AttacksDef[(int32)EElement::Max];
 	UPROPERTY()
-	FGameplayEffectAttributeCaptureDefinition AttackMotionMultiplierDef;
+	FGameplayEffectAttributeCaptureDefinition AttackMultiplier_BufDef;
 	UPROPERTY()
-	FGameplayEffectAttributeCaptureDefinition AttackItemMultiplierDef;
+	FGameplayEffectAttributeCaptureDefinition AttackMultiplier_MotionDef;
+
 	UPROPERTY()
-	FGameplayEffectAttributeCaptureDefinition DefenseMultiplierDef;
+	FGameplayEffectAttributeCaptureDefinition DefencesDef[(int32)EElement::Max];
+	UPROPERTY()
+	FGameplayEffectAttributeCaptureDefinition DefenceMultiplier_BufDef;
+	UPROPERTY()
+	FGameplayEffectAttributeCaptureDefinition DamageReduction_ShieldDef;
 
 	float CalculateBaseMagnitude_Implementation(const FGameplayEffectSpec& Spec) const override;
 };

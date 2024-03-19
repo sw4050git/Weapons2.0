@@ -36,8 +36,8 @@ public:
 	virtual float GetHealth();
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Reaction")
-		void OnDamaged(float Damage, float Health, AActor* Attacker);
+	void OnDamaged(float Damage, float Health, AActor* Attacker);
 	UFUNCTION(BlueprintImplementableEvent, Category = "Reaction")
-		void OnDied(float Damage, AActor* Attacker);
+	void OnDied(float Damage, AActor* Attacker);
 
 };
