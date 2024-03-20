@@ -23,5 +23,5 @@ struct FST_TalkToken
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UGameplayAbility> EventAbility = nullptr;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FST_TalkOption> Options = { FST_TalkOption() };
+	TArray<FST_TalkOption> Options;
 };

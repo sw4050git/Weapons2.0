@@ -22,6 +22,12 @@ void UItemDataBaseSubsystem::AddItem(FST_ItemData NewItem) {
 	}
 	else {
 		Items.Add(NewItem.ItemData, NewItem.Count);
+		for (FST_ItemData& EquippedItem : EquippedItems) {
+			if (EquippedItem.ItemData == nullptr) {
+				EquippedItem = NewItem;
+				break;
+			}
+		}
 	}
 	ED_UpdateItem.Broadcast();
 }
@@ -78,6 +84,12 @@ void UItemDataBaseSubsystem::GetSelectedItemData(FST_ItemData& ItemData) const{
 
 void UItemDataBaseSubsystem::AddWeapon(UCPP_WeaponDataAsset* NewWeapon) {
 	Weapons.Add(NewWeapon);
+	for (UCPP_WeaponDataAsset*& EquippedWeapon : EquippedWeapons) {
+		if (EquippedWeapon == nullptr) {
+			EquippedWeapon = NewWeapon;
+			break;
+		}
+	}
 	ED_UpdateWeapon.Broadcast();
 }
 
