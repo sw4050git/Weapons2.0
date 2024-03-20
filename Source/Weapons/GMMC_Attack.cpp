@@ -26,7 +26,7 @@ UGMMC_Attack::UGMMC_Attack()
 	for (EElement Element : TEnumRange<EElement>())
 	{
 		DefencesDef[static_cast<int32>(Element)].AttributeToCapture = UCPP_WeaponsCharacterAttributeSet::GetDefencesAttribute(Element);
-		DefencesDef[static_cast<int32>(Element)].AttributeSource = EGameplayEffectAttributeCaptureSource::Source;
+		DefencesDef[static_cast<int32>(Element)].AttributeSource = EGameplayEffectAttributeCaptureSource::Target;
 		DefencesDef[static_cast<int32>(Element)].bSnapshot = true;
 		RelevantAttributesToCapture.Add(DefencesDef[static_cast<int32>(Element)]);
 	}
@@ -62,25 +62,33 @@ float UGMMC_Attack::CalculateBaseMagnitude_Implementation(const FGameplayEffectS
 	for (EElement Element : TEnumRange<EElement>()) 
 	{
 		GetCapturedAttributeMagnitude(AttacksDef[static_cast<int32>(Element)], Spec, EvaluationParameters, Attacks[static_cast<int32>(Element)]);
+		UE_LOG(LogTemp, Log, TEXT("Attack=%f"), Attacks[static_cast<int32>(Element)]);
 	}
 	GetCapturedAttributeMagnitude(AttackMultiplier_BufDef, Spec, EvaluationParameters, AttackMultiplier_Buf);
+	UE_LOG(LogTemp, Log, TEXT("AttackBuf=%f"), AttackMultiplier_Buf);
 	GetCapturedAttributeMagnitude(AttackMultiplier_MotionDef, Spec, EvaluationParameters, AttackMultiplier_Motion);
+	UE_LOG(LogTemp, Log, TEXT("AttackMotion=%f"), AttackMultiplier_Motion);
 
 	for (EElement Element : TEnumRange<EElement>())
 	{
 		GetCapturedAttributeMagnitude(DefencesDef[static_cast<int32>(Element)], Spec, EvaluationParameters, Defences[static_cast<int32>(Element)]);
+		UE_LOG(LogTemp, Log, TEXT("Defence=%f"), Defences[static_cast<int32>(Element)]);
+	
 	}
 	GetCapturedAttributeMagnitude(DefenceMultiplier_BufDef, Spec, EvaluationParameters, DefenceMultiplier_Buf);
+	UE_LOG(LogTemp, Log, TEXT("DefenceBuf=%f"), DefenceMultiplier_Buf);
 	GetCapturedAttributeMagnitude(DamageReduction_ShieldDef, Spec, EvaluationParameters, DamageReduction_Shield);
+	UE_LOG(LogTemp, Log, TEXT("Shield=%f"), DamageReduction_Shield);
 
 	float Damage = 0.f;
 	for (EElement Element : TEnumRange<EElement>())
 	{
-		float Attack = Attacks[static_cast<int32>(Element)] * AttackMultiplier_Buf * AttackMultiplier_Buf;
+		float Attack = Attacks[static_cast<int32>(Element)] * AttackMultiplier_Buf * AttackMultiplier_Motion;
 		float Defence = Defences[static_cast<int32>(Element)] * DefenceMultiplier_Buf;
 		Damage+= FMath::Max(Attack - Defence, 0.f);
 	}
 	Damage *= (1 - DamageReduction_Shield / 100);
+	UE_LOG(LogTemp, Log, TEXT("Damage=%f"), Damage);
 
 	return  Damage;
 }
