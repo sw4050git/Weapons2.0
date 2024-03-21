@@ -18,7 +18,7 @@ struct FST_TalkToken
 	FName NextTag = FName();
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FText Name=FText();
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (MultiLine = "true"))
 	FText Text=FText();
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UGameplayAbility> EventAbility = nullptr;
