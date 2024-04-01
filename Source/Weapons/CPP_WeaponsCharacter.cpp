@@ -10,6 +10,7 @@ ACPP_WeaponsCharacter::ACPP_WeaponsCharacter()
 	PrimaryActorTick.bCanEverTick = true;
 
 	CPP_WeaponsCharacterAttributeSet = CreateDefaultSubobject<UCPP_WeaponsCharacterAttributeSet>(TEXT("AttributeSet"));
+	AbilitySystem = CreateDefaultSubobject<UAbilitySystemComponent>(TEXT("AbilitySystem"));
 }
 
 // Called when the game starts or when spawned
@@ -24,6 +25,11 @@ void ACPP_WeaponsCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+UAbilitySystemComponent* ACPP_WeaponsCharacter::GetAbilitySystemComponent() const 
+{
+	return AbilitySystem;
 }
 
 // Called to bind functionality to input
