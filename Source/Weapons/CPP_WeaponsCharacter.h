@@ -4,11 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "AbilitySystemInterface.h"
 #include "CPP_WeaponsCharacterAttributeSet.h"
 #include "CPP_WeaponsCharacter.generated.h"
 
+
 UCLASS()
-class WEAPONS_API ACPP_WeaponsCharacter : public ACharacter
+class WEAPONS_API ACPP_WeaponsCharacter : public ACharacter,public IAbilitySystemInterface
 {
 	GENERATED_BODY()
 
@@ -26,6 +28,11 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+
+	UPROPERTY(VisibleDefaultsOnly,BlueprintReadOnly,Category="Abilities")
+	UAbilitySystemComponent* AbilitySystem;
 
 	UPROPERTY()
 	UCPP_WeaponsCharacterAttributeSet* CPP_WeaponsCharacterAttributeSet;
