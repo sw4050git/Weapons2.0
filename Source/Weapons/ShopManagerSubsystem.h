@@ -45,8 +45,9 @@ public:
 	/// </summary>
 	/// <param name="BuyingItemIndex">買うアイテムのインデックス</param>
 	/// <param name="Count">そのアイテムをどれだけ買うか</param>
+	/// <returns>売買成功か</returns>
 	UFUNCTION(BlueprintCallable, Category = "ShopManger")
-	void BuyItem(int32 BuyingItemIndex, int32 Count);
+	bool BuyItem(int32 BuyingItemIndex, int32 Count);
 
 	/// <summary>
 	/// ショップ画面に移行する際の関数
@@ -60,8 +61,9 @@ public:
 	/// 武器の売買処理
 	/// </summary>
 	/// <param name="BuyingWeaponIndex">買う武器のインデックス</param>
+	/// <returns>売買成功か</returns>
 	UFUNCTION(BlueprintCallable, Category = "ShopManger")
-	void BuyWeapon(int32 BuyingWeaponIndex);
+	bool BuyWeapon(int32 BuyingWeaponIndex);
 
 	UPROPERTY(BlueprintAssignable, Category = "ShopManager")
 	FED_UpdateShopItems ED_UpdateShopItems;
