@@ -7,7 +7,7 @@
 
 
 void UShopManagerSubsystem::InitShopItems(TArray<FST_ShopItem> NewItems) {
-	ShopItems = TArray<FST_ShopItem>(NewItems);
+	ShopItems = NewItems;
 	ED_UpdateShopItems.Broadcast();
 }
 
@@ -29,7 +29,7 @@ bool UShopManagerSubsystem::BuyItem(int32 BuyingItemIndex, int32 Count) {
 }
 
 void UShopManagerSubsystem::InitShopWeapons(TArray<FST_ShopWeapon> NewWeapons) {
-	ShopWeapons = TArray<FST_ShopWeapon>(NewWeapons);
+	ShopWeapons = NewWeapons;
 	ED_UpdateShopWeapons.Broadcast();
 }
 
