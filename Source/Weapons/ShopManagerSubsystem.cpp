@@ -6,11 +6,10 @@
 #include "ST_ShopWeapon.h"
 
 
-void UShopManagerSubsystem::InitShopItems(TArray<FST_ShopItem> NewItems) {
+void UShopManagerSubsystem::InitShop(TArray<FST_ShopItem> NewItems, TArray<FST_ShopWeapon> NewWeapons) {
 	ShopItems = NewItems;
-	ED_UpdateShopItems.Broadcast();
+	ShopWeapons = NewWeapons;
 }
-
 
 bool UShopManagerSubsystem::BuyItem(int32 BuyingItemIndex, int32 Count) {
 	//”ÍˆÍŠO or Count‚ª‘å‚«‚·‚¬‚½‚ç”„”ƒ•s¬—§
@@ -26,11 +25,6 @@ bool UShopManagerSubsystem::BuyItem(int32 BuyingItemIndex, int32 Count) {
 
 	ED_UpdateShopItems.Broadcast();
 	return true;
-}
-
-void UShopManagerSubsystem::InitShopWeapons(TArray<FST_ShopWeapon> NewWeapons) {
-	ShopWeapons = NewWeapons;
-	ED_UpdateShopWeapons.Broadcast();
 }
 
 bool UShopManagerSubsystem::BuyWeapon(int32 BuyingWeaponIndex) {

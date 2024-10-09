@@ -34,11 +34,11 @@ public:
 
 	/// <summary>
 	/// ショップ画面に移行する際の関数
-	/// ショップで売られるアイテムのリストを構成
+	/// ショップで売られるアイテム及び武器のリストを構成
 	/// </summary>
 	/// <param name="NewItems">ショップで売られるアイテムのリスト</param>
 	UFUNCTION(BlueprintCallable, Category = "ShopManger")
-	void InitShopItems(TArray<FST_ShopItem> NewItems);
+	void InitShop(TArray<FST_ShopItem> NewItems, TArray<FST_ShopWeapon> NewWeapons);
 
 	/// <summary>
 	/// アイテムの売買処理
@@ -48,14 +48,6 @@ public:
 	/// <returns>売買成功か</returns>
 	UFUNCTION(BlueprintCallable, Category = "ShopManger")
 	bool BuyItem(int32 BuyingItemIndex, int32 Count);
-
-	/// <summary>
-	/// ショップ画面に移行する際の関数
-	/// ショップで売られる武器のリストを構成
-	/// </summary>
-	/// <param name="NewWeapons">ショップで売られる武器のリスト</param>
-	UFUNCTION(BlueprintCallable, Category = "ShopManger")
-	void InitShopWeapons(TArray<FST_ShopWeapon> NewWeapons);
 
 	/// <summary>
 	/// 武器の売買処理
