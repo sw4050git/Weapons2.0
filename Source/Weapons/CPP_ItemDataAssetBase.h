@@ -26,6 +26,9 @@ public:
 	FText Description;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	int32 Price;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UTexture2D* Icon;
 
 };
