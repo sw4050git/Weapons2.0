@@ -52,12 +52,14 @@ void UItemDataBaseSubsystem::GetEquippedItemData(int32 EquippedItemIndex, FST_It
 }
 
 void UItemDataBaseSubsystem::SetEquippedItemData(int32 EquippedItemIndex, FST_ItemData ItemData) {
-
-	for (FST_ItemData& EquippedItem: EquippedItems) {
-		if (EquippedItem.ItemData == ItemData.ItemData) EquippedItem = { nullptr,0 };
+	if (ItemData.ItemData != nullptr) 
+	{
+		for (FST_ItemData& EquippedItem : EquippedItems) {
+			if (EquippedItem.ItemData == ItemData.ItemData) EquippedItem = { nullptr,0 };
+		}
+		EquippedItems[EquippedItemIndex] = ItemData;
+		ED_UpdateItem.Broadcast();
 	}
-	EquippedItems[EquippedItemIndex] = ItemData;
-	ED_UpdateItem.Broadcast();
 }
 
 void UItemDataBaseSubsystem::ClearEquippedItem(int32 EquippedItemIndex) {
@@ -98,12 +100,15 @@ void UItemDataBaseSubsystem::GetEquippedWeaponData(int32 EquippedWeaponIndex, cl
 }
 
 void UItemDataBaseSubsystem::SetEquippedWeaponData(int32 EquippedWeaponIndex, UCPP_WeaponDataAsset* WeaponData) {
-	int32 index = EquippedWeapons.Find(WeaponData);
-	if (index != INDEX_NONE) {
-		EquippedWeapons[index] = nullptr;
+	if(WeaponData!=nullptr)
+	{
+		int32 index = EquippedWeapons.Find(WeaponData);
+		if (index != INDEX_NONE) {
+			EquippedWeapons[index] = nullptr;
+		}
+		EquippedWeapons[EquippedWeaponIndex] = WeaponData;
+		ED_UpdateWeapon.Broadcast();
 	}
-	EquippedWeapons[EquippedWeaponIndex] = WeaponData;
-	ED_UpdateWeapon.Broadcast();
 }
 
 void UItemDataBaseSubsystem::ClearEquippedWeaponData(int32 EquippedWeaponIndex) {
