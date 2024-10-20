@@ -47,11 +47,17 @@ void UItemDataBaseSubsystem::ConsumeItem() {
 	}
 }
 
+void UItemDataBaseSubsystem::SetEquippedItems(TArray<FST_ItemData> NewEquippedItems) 
+{
+	EquippedItems = NewEquippedItems;
+	ED_UpdateItem.Broadcast();
+}
+
 void UItemDataBaseSubsystem::GetEquippedItemData(int32 EquippedItemIndex, FST_ItemData& ItemData) const{
 	ItemData = EquippedItems[EquippedItemIndex];
 }
 
-void UItemDataBaseSubsystem::SetEquippedItemData(int32 EquippedItemIndex, FST_ItemData ItemData) {
+void UItemDataBaseSubsystem::EquippItem(int32 EquippedItemIndex, FST_ItemData ItemData) {
 	if (ItemData.ItemData != nullptr) 
 	{
 		for (FST_ItemData& EquippedItem : EquippedItems) {
@@ -95,11 +101,17 @@ void UItemDataBaseSubsystem::AddWeapon(UCPP_WeaponDataAsset* NewWeapon) {
 	ED_UpdateWeapon.Broadcast();
 }
 
+void UItemDataBaseSubsystem::SetEquippedWeapons(TArray<UCPP_WeaponDataAsset*> NewEquippedWeapons)
+{
+	EquippedWeapons = NewEquippedWeapons;
+	ED_UpdateItem.Broadcast();
+}
+
 void UItemDataBaseSubsystem::GetEquippedWeaponData(int32 EquippedWeaponIndex, class UCPP_WeaponDataAsset*& WeaponData) const{
 	WeaponData = EquippedWeapons[EquippedWeaponIndex];
 }
 
-void UItemDataBaseSubsystem::SetEquippedWeaponData(int32 EquippedWeaponIndex, UCPP_WeaponDataAsset* WeaponData) {
+void UItemDataBaseSubsystem::EquippWeapon(int32 EquippedWeaponIndex, UCPP_WeaponDataAsset* WeaponData) {
 	if(WeaponData!=nullptr)
 	{
 		int32 index = EquippedWeapons.Find(WeaponData);
