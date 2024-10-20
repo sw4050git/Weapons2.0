@@ -21,10 +21,10 @@ public:
 	TMap<FGuid, FST_SaveDataInfo> SaveDataInfos;
 
 	UFUNCTION(BlueprintCallable, Category = "SaveDataManager")
-	bool GetSaveDataInfo(FGuid PlayerID, FST_SaveDataInfo& NewSaveDataInfo);
+	bool GetSaveDataInfo(FGuid PlayerID, FST_SaveDataInfo& SaveDataInfo);
 
 	UFUNCTION(BlueprintCallable, Category = "SaveDataManager")
-	void UpdateSaveDataInfo(FST_SaveDataInfo NewSaveDataInfo);
+	FST_SaveDataInfo UpdateSaveDataInfo(FST_SaveDataInfo NewSaveDataInfo);
 
 	UFUNCTION(BlueprintCallable,Category="SaveDataManager")
 	void GetSortedSaveDataInfosByLastPlayTime(TArray<FST_SaveDataInfo>& SortedSaveDataInfos);

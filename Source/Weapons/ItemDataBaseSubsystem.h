@@ -40,10 +40,13 @@ public:
 	void ConsumeItem();
 
 	UFUNCTION(BlueprintCallable, Category = "ItemDataBase")
+	void SetEquippedItems(TArray<FST_ItemData> NewEquippedItems);
+
+	UFUNCTION(BlueprintCallable, Category = "ItemDataBase")
 	void GetEquippedItemData(int32 EquippedItemIndex, FST_ItemData& ItemData) const;
 
 	UFUNCTION(BlueprintCallable, Category = "ItemDataBase")
-	void SetEquippedItemData(int32 EquippedItemIndex, FST_ItemData ItemData);
+	void EquippItem(int32 EquippedItemIndex, FST_ItemData ItemData);
 
 	UFUNCTION(BlueprintCallable, Category = "ItemDataBase")
 	void ClearEquippedItem(int32 EquippedItemIndex);
@@ -73,10 +76,13 @@ public:
 	void AddWeapon(UCPP_WeaponDataAsset* NewWeapon);
 
 	UFUNCTION(BlueprintCallable, Category = "WeaponDataBase")
+	void SetEquippedWeapons(TArray<UCPP_WeaponDataAsset*> NewEquippedWeapons);
+
+	UFUNCTION(BlueprintCallable, Category = "WeaponDataBase")
 	void GetEquippedWeaponData(int32 EquippedWeaponIndex, class UCPP_WeaponDataAsset*& WeaponData) const;
 
 	UFUNCTION(BlueprintCallable, Category = "WeaponDataBase")
-	void SetEquippedWeaponData(int32 EquippedWeaponIndex, UCPP_WeaponDataAsset* WeaponData);
+	void EquippWeapon(int32 EquippedWeaponIndex, UCPP_WeaponDataAsset* WeaponData);
 
 	UFUNCTION(BlueprintCallable, Category = "WeaponDataBase")
 	void ClearEquippedWeaponData(int32 EquippedWeaponIndex);

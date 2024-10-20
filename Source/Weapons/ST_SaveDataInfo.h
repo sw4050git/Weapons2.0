@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "CPP_LevelSaveData.h"
 #include "ST_SaveDataInfo.generated.h"
 
 /**
@@ -25,5 +26,8 @@ struct FST_SaveDataInfo
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FName LastPlayLevel;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UCPP_LevelSaveData> LastPlayLevelSaveDataClass;
 
 };
