@@ -39,6 +39,11 @@ void ACPP_WeaponsCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInp
 
 }
 
+float ACPP_WeaponsCharacter::GetMagicPoint()
+{
+	return CPP_WeaponsCharacterAttributeSet->GetMagicPoint();
+}
+
 float ACPP_WeaponsCharacter::GetStamina()
 {
 	return CPP_WeaponsCharacterAttributeSet->GetStamina();
