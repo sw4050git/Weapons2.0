@@ -36,7 +36,9 @@ public:
 
 	UPROPERTY()
 	UCPP_WeaponsCharacterAttributeSet* CPP_WeaponsCharacterAttributeSet;
-
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "WeaponsCharacterAttributeSet")
+	virtual float GetMagicPoint();
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "WeaponsCharacterAttributeSet")
 	virtual float GetStamina();
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "WeaponsCharacterAttributeSet")

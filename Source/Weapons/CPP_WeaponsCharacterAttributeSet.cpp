@@ -11,6 +11,7 @@ UCPP_WeaponsCharacterAttributeSet::UCPP_WeaponsCharacterAttributeSet()
 {
 	Stamina = 100.f;
 	Health = 100.f;
+	MagicPoint = 100.f;
 
 	Attack_Base = 0.f;
 	Attack_Flame = 0.f;
@@ -40,6 +41,11 @@ void UCPP_WeaponsCharacterAttributeSet::PostGameplayEffectExecute(const FGamepla
 	if (Data.EvaluatedData.Attribute == GetStaminaAttribute())
 	{
 		SetStamina(FMath::Clamp(GetStamina(), 0.f, 100.f));
+	}
+
+	if (Data.EvaluatedData.Attribute == GetMagicPointAttribute())
+	{
+		SetMagicPoint(FMath::Clamp(GetMagicPoint(), 0.f, 100.f));
 	}
 
 	AActor* TargetActor = Data.Target.GetAvatarActor();

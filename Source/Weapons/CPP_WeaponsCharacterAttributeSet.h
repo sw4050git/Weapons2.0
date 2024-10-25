@@ -30,6 +30,10 @@ public:
 	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data)override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "WeaponsCharacterAttributes")
+	FGameplayAttributeData MagicPoint;
+	ATTRIBUTE_ACCESSORS(UCPP_WeaponsCharacterAttributeSet, MagicPoint)
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "WeaponsCharacterAttributes")
 	FGameplayAttributeData Stamina;
 	ATTRIBUTE_ACCESSORS(UCPP_WeaponsCharacterAttributeSet, Stamina)
 
