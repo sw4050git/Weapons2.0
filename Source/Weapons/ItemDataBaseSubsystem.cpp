@@ -18,6 +18,12 @@ void UItemDataBaseSubsystem::AddItem(FST_ItemData NewItem) {
 		if (Items[NewItem.ItemData] > NewItem.ItemData->MaxCount) {
 			Items[NewItem.ItemData] = NewItem.ItemData->MaxCount;
 		}
+		for (FST_ItemData& EquippedItem : EquippedItems) {
+			if (EquippedItem.ItemData == NewItem.ItemData) {
+				EquippedItem = { NewItem.ItemData ,Items[NewItem.ItemData] };
+				break;
+			}
+		}
 	}
 	else {
 		Items.Add(NewItem.ItemData, NewItem.Count);
