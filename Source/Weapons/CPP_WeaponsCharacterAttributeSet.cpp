@@ -57,6 +57,7 @@ void UCPP_WeaponsCharacterAttributeSet::PostGameplayEffectExecute(const FGamepla
 	{
 		if (Data.EvaluatedData.ModifierOp == EGameplayModOp::Additive)
 		{
+			UE_LOG(LogTemp, Log, TEXT("%f"),Data.EvaluatedData.Magnitude);
 			if (Data.EvaluatedData.Magnitude < 0.f)
 			{
 				if (TargetCharacter)
@@ -70,8 +71,8 @@ void UCPP_WeaponsCharacterAttributeSet::PostGameplayEffectExecute(const FGamepla
 						TargetCharacter->OnDied(GetDamage(), SourceActor);
 					}
 				}
+				InitDamage(0.f);
 			}
-			InitDamage(0.f);
 		}
 		InitHealth(FMath::Clamp(GetHealth(), 0.f, 100.f));
 	}

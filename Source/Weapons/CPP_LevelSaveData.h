@@ -19,6 +19,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSet<FGuid> ActionedActorIDs;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FName CurrentStartTag="Start";
+
 	UFUNCTION(BlueprintCallable, Category="LevelSaveData")
 	void AddActionedActorID(FGuid ActionedActorID);
 	

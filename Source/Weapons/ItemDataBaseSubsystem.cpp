@@ -6,7 +6,6 @@
 UItemDataBaseSubsystem::UItemDataBaseSubsystem() {
 	SelectedItemIndex = 0;
 	SelectedWeaponIndex = 0;
-	//EquippedItems.SetNum(5);
 	for (int32 i = 0; i < 5; i++) {
 		EquippedItems.Add({ nullptr,0 });
 	}
@@ -18,6 +17,12 @@ void UItemDataBaseSubsystem::AddItem(FST_ItemData NewItem) {
 		Items[NewItem.ItemData] += NewItem.Count;
 		if (Items[NewItem.ItemData] > NewItem.ItemData->MaxCount) {
 			Items[NewItem.ItemData] = NewItem.ItemData->MaxCount;
+		}
+		for (FST_ItemData& EquippedItem : EquippedItems) {
+			if (EquippedItem.ItemData == NewItem.ItemData) {
+				EquippedItem = { NewItem.ItemData ,Items[NewItem.ItemData] };
+				break;
+			}
 		}
 	}
 	else {
