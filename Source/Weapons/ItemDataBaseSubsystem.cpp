@@ -6,7 +6,6 @@
 UItemDataBaseSubsystem::UItemDataBaseSubsystem() {
 	SelectedItemIndex = 0;
 	SelectedWeaponIndex = 0;
-	//EquippedItems.SetNum(5);
 	for (int32 i = 0; i < 5; i++) {
 		EquippedItems.Add({ nullptr,0 });
 	}
