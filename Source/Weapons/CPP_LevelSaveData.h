@@ -22,6 +22,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FName CurrentStartTag="Start";
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	USoundBase* LevelBGM;
+
 	UFUNCTION(BlueprintCallable, Category="LevelSaveData")
 	void AddActionedActorID(FGuid ActionedActorID);
 	
