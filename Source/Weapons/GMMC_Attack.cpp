@@ -85,7 +85,7 @@ float UGMMC_Attack::CalculateBaseMagnitude_Implementation(const FGameplayEffectS
 	{
 		float Attack = Attacks[static_cast<int32>(Element)] * AttackMultiplier_Buf * AttackMultiplier_Motion;
 		float Defence = Defences[static_cast<int32>(Element)] * DefenceMultiplier_Buf;
-		Damage+= FMath::Max(Attack - Defence, 0.f);
+		Damage+= FMath::Max(Attack *(1 - Defence), 0.f);
 	}
 	Damage *= (1 - DamageReduction_Shield / 100);
 	UE_LOG(LogTemp, Log, TEXT("Damage=%f"), Damage);
