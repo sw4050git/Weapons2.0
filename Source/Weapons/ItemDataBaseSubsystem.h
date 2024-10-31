@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Subsystems/GameInstanceSubsystem.h"
+#include "Subsystems/WorldSubsystem.h"
 #include "CPP_WeaponDataAsset.h"
 #include "CPP_ItemDataAsset.h"
 #include "ST_ItemData.h"
@@ -17,7 +17,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FED_UpdateItem);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FED_UpdateWeapon);
 
 UCLASS()
-class WEAPONS_API UItemDataBaseSubsystem : public UGameInstanceSubsystem
+class WEAPONS_API UItemDataBaseSubsystem : public UWorldSubsystem
 {
 	GENERATED_BODY()
 
