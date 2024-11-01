@@ -15,8 +15,8 @@ struct FST_ShopWeapon
 	GENERATED_BODY();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UCPP_WeaponDataAsset* WeaponData;
+	UCPP_WeaponDataAsset* WeaponData=nullptr;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool Sold;
+	bool Sold=false;
 };

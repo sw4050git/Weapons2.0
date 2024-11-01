@@ -16,7 +16,7 @@ struct FST_ItemData
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UCPP_ItemDataAsset* ItemData;
+	UCPP_ItemDataAsset* ItemData=nullptr;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int32 Count;

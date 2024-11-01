@@ -16,12 +16,12 @@ struct FST_ShopItem
 	
 	//BP(UCPP)‚Íƒ|ƒCƒ“ƒ^‚Å“ü‚ê‚é
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UCPP_ItemDataAsset* ItemData;
+	UCPP_ItemDataAsset* ItemData=nullptr;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int32 Count;
+	int32 Count=0;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool Sold;
+	bool Sold=false;
 
 };
