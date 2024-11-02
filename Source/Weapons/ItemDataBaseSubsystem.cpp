@@ -109,7 +109,7 @@ void UItemDataBaseSubsystem::AddWeapon(UCPP_WeaponDataAsset* NewWeapon) {
 void UItemDataBaseSubsystem::SetEquippedWeapons(TArray<UCPP_WeaponDataAsset*> NewEquippedWeapons)
 {
 	EquippedWeapons = NewEquippedWeapons;
-	ED_UpdateItem.Broadcast();
+	ED_UpdateWeapon.Broadcast();
 }
 
 void UItemDataBaseSubsystem::GetEquippedWeaponData(int32 EquippedWeaponIndex, class UCPP_WeaponDataAsset*& WeaponData) const{
