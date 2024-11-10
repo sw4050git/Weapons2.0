@@ -14,7 +14,6 @@ struct FST_ShopItem
 {
 	GENERATED_BODY()
 	
-	//BP(UCPP)‚Íƒ|ƒCƒ“ƒ^‚Å“ü‚ê‚é
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UCPP_ItemDataAsset* ItemData=nullptr;
 
