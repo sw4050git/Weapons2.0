@@ -4,13 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/SaveGame.h"
+#include "CPP_WeaponsSaveGame.h"
 #include "CPP_LevelSaveData.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class WEAPONS_API UCPP_LevelSaveData : public USaveGame
+class WEAPONS_API UCPP_LevelSaveData : public UCPP_WeaponsSaveGame
 {
 	GENERATED_BODY()
 

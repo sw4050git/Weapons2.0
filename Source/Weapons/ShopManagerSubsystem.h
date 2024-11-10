@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "ST_ShopItem.h"
 #include "ST_ShopWeapon.h"
+#include "ST_ShopLineup.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "ShopManagerSubsystem.generated.h"
 
@@ -20,40 +21,27 @@ class WEAPONS_API UShopManagerSubsystem : public UGameInstanceSubsystem
 	GENERATED_BODY()
 
 public:
-	/// <summary>
-	/// ショップで売られているアイテムのリスト
-	/// </summary>
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "ShopManager")
-	TArray<FST_ShopItem> ShopItems;
+	FST_ShopLineup ShopLineup;
 
 	/// <summary>
-	/// ショップで売られている武器のリスト
+	/// ショップのラインナップを初期化
 	/// </summary>
-	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "ShopManager")
-	TArray<FST_ShopWeapon> ShopWeapons;
-
-	/// <summary>
-	/// ショップ画面に移行する際の関数
-	/// ショップで売られるアイテム及び武器のリストを構成
-	/// </summary>
-	/// <param name="NewItems">ショップで売られるアイテムのリスト</param>
+	/// <param name="Lineup">ショップのラインナップ</param>
 	UFUNCTION(BlueprintCallable, Category = "ShopManger")
-	void InitShop(TArray<FST_ShopItem> NewItems, TArray<FST_ShopWeapon> NewWeapons);
+	void InitShop(FST_ShopLineup Lineup);
 
 	/// <summary>
-	/// アイテムの売買処理
+	/// アイテムの購入処理
 	/// </summary>
-	/// <param name="BuyingItemIndex">買うアイテムのインデックス</param>
-	/// <param name="Count">そのアイテムをどれだけ買うか</param>
-	/// <returns>売買成功か</returns>
+	/// <returns>購入成功時True,そうでなければFalse</returns>
 	UFUNCTION(BlueprintCallable, Category = "ShopManger")
 	bool BuyItem(int32 BuyingItemIndex, int32 Count);
 
 	/// <summary>
-	/// 武器の売買処理
+	/// 武器の購入処理
 	/// </summary>
-	/// <param name="BuyingWeaponIndex">買う武器のインデックス</param>
-	/// <returns>売買成功か</returns>
+	/// <returns>購入成功時True,そうでなければFalse</returns>
 	UFUNCTION(BlueprintCallable, Category = "ShopManger")
 	bool BuyWeapon(int32 BuyingWeaponIndex);
 
