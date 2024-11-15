@@ -19,5 +19,24 @@ struct FST_ItemData
 	UCPP_ItemDataAsset* ItemData=nullptr;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int32 Count;
+	int32 Count=0;
+
+	bool operator==(const FST_ItemData& V)const;
+
+	void AddCount(const int32 Count);
 };
+
+FORCEINLINE uint32 GetTypeHash(const FST_ItemData& Item)
+{
+	return FCrc::MemCrc32(&Item, sizeof(FST_ItemData));
+}
+
+FORCEINLINE bool FST_ItemData::operator==(const FST_ItemData& V)const 
+{
+	return ItemData == V.ItemData;
+}
+
+FORCEINLINE void FST_ItemData::AddCount(const int32 Value)
+{
+	Count = FMath::Clamp(Count+Value,0,ItemData->MaxCount);
+}

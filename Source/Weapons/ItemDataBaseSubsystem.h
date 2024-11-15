@@ -25,7 +25,7 @@ public:
 	UItemDataBaseSubsystem();
 
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "ItemDataBase")
-	TMap<UCPP_ItemDataAsset*, int32> Items;
+	TSet<FST_ItemData> Items;
 
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, EditFixedSize, Category = "ItemDataBase")
 	TArray<FST_ItemData> EquippedItems;
@@ -38,6 +38,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "ItemDataBase")
 	void ConsumeItem();
+
+	UFUNCTION(BlueprintCallable, Category = "ItemDataBase")
+	int32 GetItemCount(UCPP_ItemDataAsset* ItemData)const;
 
 	UFUNCTION(BlueprintCallable, Category = "ItemDataBase")
 	void SetEquippedItems(TArray<FST_ItemData> NewEquippedItems);
