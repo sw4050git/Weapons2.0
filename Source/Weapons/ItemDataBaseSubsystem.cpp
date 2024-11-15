@@ -6,27 +6,21 @@
 UItemDataBaseSubsystem::UItemDataBaseSubsystem() {
 	SelectedItemIndex = 0;
 	SelectedWeaponIndex = 0;
-	for (int32 i = 0; i < 5; i++) {
-		EquippedItems.Add({ nullptr,0 });
-	}
+	EquippedItems.SetNum(5);
 	EquippedWeapons.SetNum(3);
 }
 
 void UItemDataBaseSubsystem::AddItem(FST_ItemData NewItem) {
-	if (Items.Contains(NewItem.ItemData)) {
-		Items[NewItem.ItemData] += NewItem.Count;
-		if (Items[NewItem.ItemData] > NewItem.ItemData->MaxCount) {
-			Items[NewItem.ItemData] = NewItem.ItemData->MaxCount;
-		}
-		for (FST_ItemData& EquippedItem : EquippedItems) {
-			if (EquippedItem.ItemData == NewItem.ItemData) {
-				EquippedItem = { NewItem.ItemData ,Items[NewItem.ItemData] };
-				break;
-			}
-		}
+	if (Items.Contains(NewItem)) {
+		FST_ItemData* AugendItemPtr= Items.Find(NewItem);
+		AugendItemPtr->AddCount(NewItem.Count);
+		if (EquippedItems.Contains(*AugendItemPtr)) 
+		{
+			*EquippedItems.FindByKey(*AugendItemPtr) = *AugendItemPtr;
+		} 
 	}
 	else {
-		Items.Add(NewItem.ItemData, NewItem.Count);
+		Items.Add(NewItem);
 		for (FST_ItemData& EquippedItem : EquippedItems) {
 			if (EquippedItem.ItemData == nullptr) {
 				EquippedItem = NewItem;
@@ -38,18 +32,23 @@ void UItemDataBaseSubsystem::AddItem(FST_ItemData NewItem) {
 }
 
 void UItemDataBaseSubsystem::ConsumeItem() {
-	if (EquippedItems[SelectedItemIndex].ItemData != nullptr) {
-		if (EquippedItems[SelectedItemIndex].ItemData->Consumable) {
-			Items[EquippedItems[SelectedItemIndex].ItemData]--;
-			EquippedItems[SelectedItemIndex].Count--;
-			if (Items[EquippedItems[SelectedItemIndex].ItemData] == 0) {
-				Items.Remove(EquippedItems[SelectedItemIndex].ItemData);
-				EquippedItems[SelectedItemIndex].ItemData = nullptr;
-				EquippedItems[SelectedItemIndex].Count = 0;
-			}
-			ED_UpdateItem.Broadcast();
+	FST_ItemData* SelectedItemPtr = &EquippedItems[SelectedItemIndex];
+	if (SelectedItemPtr->ItemData != nullptr && SelectedItemPtr->ItemData->Consumable) {
+		SelectedItemPtr->AddCount(-1);
+		Items.Find(*SelectedItemPtr)->AddCount(-1);
+		if (SelectedItemPtr->Count == 0) {
+			Items.Remove(*SelectedItemPtr);
+			*SelectedItemPtr = { nullptr ,0};
 		}
+		ED_UpdateItem.Broadcast();
 	}
+}
+
+int32 UItemDataBaseSubsystem::GetItemCount(UCPP_ItemDataAsset* ItemData)const {
+	if (Items.Contains({ ItemData,0 })) {
+		return Items.Find({ ItemData,0 })->Count;
+	}
+	return 0;
 }
 
 void UItemDataBaseSubsystem::SetEquippedItems(TArray<FST_ItemData> NewEquippedItems) 
@@ -66,7 +65,7 @@ void UItemDataBaseSubsystem::EquippItem(int32 EquippedItemIndex, FST_ItemData It
 	if (ItemData.ItemData != nullptr) 
 	{
 		for (FST_ItemData& EquippedItem : EquippedItems) {
-			if (EquippedItem.ItemData == ItemData.ItemData) EquippedItem = { nullptr,0 };
+			if (EquippedItem == ItemData) EquippedItem = { nullptr,0 };
 		}
 		EquippedItems[EquippedItemIndex] = ItemData;
 		ED_UpdateItem.Broadcast();
@@ -79,9 +78,7 @@ void UItemDataBaseSubsystem::ClearEquippedItem(int32 EquippedItemIndex) {
 }
 
 void UItemDataBaseSubsystem::GetSortedItemsByID(TArray<FST_ItemData>& SortedItems) const{
-	for (auto It = Items.CreateConstIterator(); It; ++It) {
-		SortedItems.Add({ It.Key(),It.Value() });
-	}
+	SortedItems = Items.Array();
 	SortedItems.Sort([](const FST_ItemData A, const FST_ItemData B) {return A.ItemData->ID < B.ItemData->ID; });
 }
 
